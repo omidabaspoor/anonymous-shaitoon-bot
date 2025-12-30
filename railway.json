@@ -1,0 +1,6 @@
+{
+  "build": {
+    "builder": "paketo"
+  },
+  "start": "python anonymous_bot.py"
+}
