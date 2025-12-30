@@ -1,10 +1,10 @@
+import asyncio
+import os
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
-import asyncio
-import os  # این خط رو اضافه کن
 
-API_TOKEN = os.getenv("8520007457:AAH7IOdl9obVeZbDU5vdH0Hd2AXXAYqOQ-U")  # توکن رو از محیط می‌خونه
+API_TOKEN = os.getenv("8520007457:AAH7IOdl9obVeZbDU5vdH0Hd2AXXAYqOQ-U")  # توکن از محیط می‌خونه
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
@@ -52,11 +52,7 @@ async def find_partner(call: types.CallbackQuery):
         return
     waiting_users.add(user_id)
     await call.message.edit_text("🔍 دارم دنبال یه آدم باحال می‌گردم برات...\nیه لحظه صبر کن ای جوون!")
-    partner = None
-    for waiter in list(waiting_users):
-        if waiter != user_id:
-            partner = waiter
-            break
+    partner = next((w for w in list(waiting_users) if w != user_id), None)
     if partner:
         connections[user_id] = partner
         connections[partner] = user_id
