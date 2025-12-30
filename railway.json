@@ -1,6 +1,6 @@
 {
   "build": {
-    "builder": "paketo"
+    "builder": "paketobuildpacks/builder-jammy-base"
   },
   "start": "python anonymous_bot.py"
 }
